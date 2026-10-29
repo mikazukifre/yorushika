@@ -1,0 +1,289 @@
+/* pc */
+body {
+    background-color: #ffffff;
+    color: #222;
+    font-size: 14px;
+}
+/* 初期表示削除対策 */
+ul {
+  list-style: none; /* 黒丸消す */
+  margin: 0;    /* 余白も一緒に消す */
+  padding: 0;   /* 余白も一緒に消す */
+}
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s ease;  /* 変化を滑らかにする設定（0.3秒かけて変わる）easeは初期値で最初と最後がゆっくり表示 */
+}
+a:hover {
+    opacity: 0.5;  /* マウスホバー時に不透明度を50%にする（薄くなる） */
+}
+/* header */
+/* メニュー */
+.menu {
+    /* 枠組み */
+    width: 60px;
+    height: 100%;
+    background-color:  #ffffff;
+    position: fixed;
+    z-index: 10;
+}
+.menuText {
+    /* 枠組み */
+    width: 60px;
+    height: 60px;
+    background-color:  #ACD0D1;
+    position: absolute;
+    z-index: 20;
+    /* フォント */
+    color: #ffffff;
+    font-size: 12px;
+    /* 文字配置 */
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-content: center;
+    column-gap: 8px;
+    row-gap: 2px;
+}
+.menuBar {
+    /* 枠組み */
+    width: 60px;
+    height: 100%;
+    background-color:  #ACD0D1;
+    position: absolute;
+    z-index: 20;
+    top: 61px;
+}
+/* 言語切り替え */
+.language {
+    /* フォント */
+    color: #ffffff;
+    font-size: 10px;
+    border-bottom: 1px solid;
+    /* 枠組み */
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    right: 20px;
+    width: 190px;
+}
+/* main */
+.main {
+    margin-left: 60px;
+    width: calc(100%-60px); /*横スクロール出ない calc=計算*/
+}
+/* ホーム画像 */
+.homeImage {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url(./img/ph_kv_202512_B_zE64Lvb8.jpg);
+    background-position: center;
+}
+/* ロゴ */
+.logo {
+    position: absolute;
+    background-color: #ffffff;
+    width: 156px;
+    height: 152.19px;
+}
+/* スクロール */
+.scroll {
+    position: absolute;
+    bottom: 0;
+    width: 40px;
+    background-color: #ffffff;
+}
+.scrollText {
+    height: 95px;
+    text-orientation: sideways;
+    writing-mode: vertical-rl;
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-align: center;
+}
+.scrollLine {
+    height: 95px;
+    width: 1px;
+    background:#222;
+    margin-left: 50%;
+    /* transform: translateX(-50%); */
+}
+/* リリース画像 */
+.release {
+    margin: 40px 0 80px 40px;
+}
+.release ul {
+    display: flex;
+    justify-content: center;
+}
+.release li {
+    margin-right: 24px;
+    background-color: #ACD0D1;
+}
+.release img {
+    max-width: 100%;
+}
+/* ニュース */
+.news {
+    letter-spacing: 0.3em;
+    margin: 0 100px 210px 40px;
+    display: flex;
+    justify-content: center;
+}
+/* Left */
+.newsLeft {
+    padding-top: 40px;
+    width: 200px;
+}
+.newsTit {
+    font-size: 22px;
+}
+.newsText {
+    font-size: 12px;
+}
+/* Right */
+.news li {
+    padding: 40px 30px;
+    border-top: 1px solid #EAEAEA;
+    border-bottom: 1px solid #EAEAEA;
+    margin-top: -1px;
+}
+.newsStory a {
+    display: grid;
+    grid-template-columns: max-content max-content minmax(0, 1fr);
+    align-items: baseline;
+}
+.newsDate {
+    font-size: 13px;
+    white-space: nowrap;
+
+}
+.newsMem {
+    color: #ffffff;
+    font-size: 10px;
+    background-color: #ACD0D1;
+    margin-left: 10px;
+    padding: 3px 6px 3px 8px;
+    white-space: nowrap;
+}
+.newsStory:nth-child(2) a .newsMem {
+    margin-right: 24px;
+}
+.newsInfo {
+    letter-spacing: 0.1em;
+    padding-left: 40px;
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+/* ムービー */
+/* ネクストプレビュー */
+.np {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  letter-spacing: 0.3em;
+  margin: 0 60px 130px 0;
+  cursor: pointer;
+}
+.npLine {
+  border-left: 1px solid #222;
+  height: 50px; 
+}
+/* ムービーズ */
+.movie ul {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+.movie li {
+    margin: 0 20px 0 20px;
+    position: relative; /* 親要素 */
+    box-shadow: 0px 120px 40px -100px#808080;
+    margin-bottom: 300px;
+}
+.movieColor {
+    position: absolute;
+    height: 350px;
+    min-width: 961px;
+    background-color: #ACD0D1;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+.movieColor:hover {
+    opacity: 0;
+}
+.movieMid {
+    position: absolute; /* 子要素 */
+    top: 50%;   /* liの真ん中よせに */
+    left: 50%;  /* liの真ん中よせに */
+    transform: translate(-50%, -50%);   /* liの真ん中よせに */
+    display: flex;
+    flex-direction: column; /* 子要素を縦並び */
+    align-items: center;
+    pointer-events: none;   /*上に重なった要素をマウス操作の対象外にする*/
+}
+.movieCir {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* 円を作成 */
+    border: 1px solid #ffffff;
+    background-color: transparent;
+}
+.movieTit {
+    color: #ffffff;
+    letter-spacing: 0.1em;
+}
+.movie img {
+    height: 350px;
+    min-width: 961px;
+    object-fit: cover;  /*画像や動画などの置換要素をコンテナいっぱいに表示しつつアスペクト比を維持*/
+}
+.movie a:hover {
+    opacity: 1;
+}
+/* バナー */
+.bnr {
+    margin:0 0 100px 40px;
+    display: flex;
+    align-items: center;
+}
+.bnr ul {
+    display: flex;
+    justify-content: center;
+}
+.bnr li {
+    background-color: #ACD0D1;
+    margin-right:20px;
+}
+.bnr img {
+    width: 220px;
+    height: 63.36px;    
+}
+/* SNS */
+.sns {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 20;
+    background-color: #ffffff;
+    padding: 30px;
+}
+.sns ul{
+    display: flex;
+    justify-content: center;
+}
+.sns li {
+    background-color: #ACD0D1;    
+    margin-right:20px;
+}
+.sns img {
+    width: 26px;
+    height: 20px;
+}
+
+
+/* 透過の仕様がわからない */
+/* 要素が重なってボタンの透過などがむずい */
