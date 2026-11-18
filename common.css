@@ -88,6 +88,9 @@ a:hover {
     width: 156px;
     height: 152.19px;
 }
+.logo object {
+    padding: 30px;
+}
 /* スクロール */
 .scroll {
     position: absolute;
@@ -276,10 +279,12 @@ a:hover {
     justify-content: center;
 }
 .sns li {
-    background-color: #ACD0D1;    
-    margin-right:20px;
+    margin-right: 12px;
 }
-.sns img {
+.sns li:last-child {
+    margin-right: 0;
+}
+.sns object {
     width: 26px;
     height: 20px;
 }
