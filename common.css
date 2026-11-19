@@ -4,6 +4,7 @@ body {
     color: #222;
     font-size: 14px;
 }
+
 /* 初期表示削除対策 */
 ul {
   list-style: none; /* 黒丸消す */
@@ -14,10 +15,30 @@ a {
     color: inherit;
     text-decoration: none;
     transition: opacity 0.3s ease;  /* 変化を滑らかにする設定（0.3秒かけて変わる）easeは初期値で最初と最後がゆっくり表示 */
+    position: relative; /* 擬似要素を使うために必要 */
+    display: block; /*imgタグ全体を囲う為*/
 }
-a:hover {
-    opacity: 0.5;  /* マウスホバー時に不透明度を50%にする（薄くなる） */
+a.hoverText:hover {
+    opacity: 0.5;
 }
+a.hoverbgc::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ACD0D1;
+    mix-blend-mode: color; /* 背景色と混ぜる */
+    opacity: 0; /* 初期状態では透明 */
+    transition: all 0.3s 0s ease;
+}
+a.hoverbgc:hover::before {
+    opacity: 0.8;   /* マウスホバー時に不透明度を50%にする（薄くなる） */
+}
+
+
 /* header */
 /* メニュー */
 .menu {
@@ -55,6 +76,7 @@ a:hover {
     z-index: 20;
     top: 61px;
 }
+
 /* 言語切り替え */
 .language {
     /* フォント */
@@ -68,11 +90,13 @@ a:hover {
     right: 20px;
     width: 190px;
 }
+
 /* main */
 .main {
     margin-left: 60px;
     width: calc(100%-60px); /*横スクロール出ない calc=計算*/
 }
+
 /* ホーム画像 */
 .homeImage {
     position: relative;
@@ -81,6 +105,7 @@ a:hover {
     background-image: url(./img/ph_kv_202512_B_zE64Lvb8.jpg);
     background-position: center;
 }
+
 /* ロゴ */
 .logo {
     position: absolute;
@@ -88,9 +113,10 @@ a:hover {
     width: 156px;
     height: 152.19px;
 }
-.logo object {
+.logo img {
     padding: 30px;
 }
+
 /* スクロール */
 .scroll {
     position: absolute;
@@ -113,6 +139,7 @@ a:hover {
     margin-left: 50%;
     /* transform: translateX(-50%); */
 }
+
 /* リリース画像 */
 .release {
     margin: 40px 0 80px 40px;
@@ -123,11 +150,11 @@ a:hover {
 }
 .release li {
     margin-right: 24px;
-    background-color: #ACD0D1;
 }
 .release img {
     max-width: 100%;
 }
+
 /* ニュース */
 .news {
     letter-spacing: 0.3em;
@@ -180,6 +207,7 @@ a:hover {
     min-width: 0;
     overflow-wrap: break-word;
 }
+
 /* ムービー */
 /* ネクストプレビュー */
 .np {
@@ -195,7 +223,39 @@ a:hover {
   border-left: 1px solid #222;
   height: 50px; 
 }
+.nextArrow {
+    width: 60px;
+    height: 12px;
+}
+.nextArrow img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.nextArrow:hover {
+    filter: brightness(0) saturate(100%) invert(84%) sepia(14%) saturate(370%) hue-rotate(133deg) brightness(93%) contrast(91%);
+    transition: all 0.3s 0s ease;
+}
+.prevArrow {
+    width: 60px;
+    height: 12px;
+}
+.prevArrow img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: scale(-1,1);
+}
+.prevArrow:hover {
+    filter: brightness(0) saturate(100%) invert(84%) sepia(14%) saturate(370%) hue-rotate(133deg) brightness(93%) contrast(91%);
+    transition: all 0.3s 0s ease;
+}
 /* ムービーズ */
+/* 位置決め */
 .movie ul {
     display: flex;
     justify-content: center;
@@ -207,17 +267,31 @@ a:hover {
     box-shadow: 0px 120px 40px -100px#808080;
     margin-bottom: 300px;
 }
-.movieColor {
-    position: absolute;
-    height: 350px;
-    min-width: 961px;
-    background-color: #ACD0D1;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
+/* 背景青 */
+.movie a.hoverbgc {
+    position: relative; /* 擬似要素を使うために必要 */
 }
-.movieColor:hover {
+.movie a.hoverbgc::before { /* コード下の方なのでより強く優先される指定 */
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ACD0D1;
+    mix-blend-mode: multiply; /* multiply（乗算） とは、重なり合った2つの要素や背景の色を掛け合わせて合成し、元の色よりも暗く表現するブレンドモード（描画モード） の値 */
+    opacity: 0.8;
+}
+.movie a.hoverbgc:hover::before {
     opacity: 0;
 }
+.movie .movieImg {  /*クラス名の前に親要素を指定することで、他のimgタグに影響を与えないようにする*/
+    height: 350px;
+    min-width: 961px;
+    object-fit: cover;  /*画像や動画などの置換要素をコンテナいっぱいに表示しつつアスペクト比を維持*/
+}
+/* 再生ボタン・タイトル */
 .movieMid {
     position: absolute; /* 子要素 */
     top: 50%;   /* liの真ん中よせに */
@@ -228,25 +302,38 @@ a:hover {
     align-items: center;
     pointer-events: none;   /*上に重なった要素をマウス操作の対象外にする*/
 }
+/* 円 */
 .movieCir {
     width: 80px;
     height: 80px;
     border-radius: 50%; /* 円を作成 */
     border: 1px solid #ffffff;
     background-color: transparent;
+    position: relative; /* 擬似要素を使うために必要 */
 }
+.movieCir:hover {
+    background-color: #ffffff;
+}
+/* 三角形 */
+.movieCir::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 54%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 20px solid #ffffff;
+}
+/* テキスト */
 .movieTit {
     color: #ffffff;
     letter-spacing: 0.1em;
 }
-.movie img {
-    height: 350px;
-    min-width: 961px;
-    object-fit: cover;  /*画像や動画などの置換要素をコンテナいっぱいに表示しつつアスペクト比を維持*/
-}
-.movie a:hover {
-    opacity: 1;
-}
+
 /* バナー */
 .bnr {
     margin:0 0 100px 40px;
@@ -258,13 +345,13 @@ a:hover {
     justify-content: center;
 }
 .bnr li {
-    background-color: #ACD0D1;
     margin-right:20px;
 }
 .bnr img {
     width: 220px;
     height: 63.36px;    
 }
+
 /* SNS */
 .sns {
     position: fixed;
@@ -284,11 +371,14 @@ a:hover {
 .sns li:last-child {
     margin-right: 0;
 }
-.sns object {
+.sns img {
     width: 26px;
     height: 20px;
 }
-
+.hovercl:hover {
+    filter: brightness(0) saturate(100%) invert(89%) sepia(27%) saturate(207%) hue-rotate(132deg) brightness(86%) contrast(91%);
+    transition: all 0.3s 0s ease;
+}
 
 /* 透過の仕様がわからない */
 /* 要素が重なってボタンの透過などがむずい */
