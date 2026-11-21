@@ -302,7 +302,7 @@ a.hoverbgc:hover::before {
     opacity: 0;
 }
 /* イメージ設定 */
-.movie .movieImg {
+.movie .movieImg {  /*クラス名の前に親要素を指定することで、他のimgタグに影響を与えないようにする*/
     height: 350px;
     width: 50vw;    /* 画面幅の50%に応じて常に縮小・拡大する */
     max-width: 961px;
